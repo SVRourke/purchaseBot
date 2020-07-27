@@ -6,30 +6,24 @@ puts app.class
 
 seeds = [
     'https://www.bestbuy.com/site/nintendo-switch-32gb-console-neon-red-neon-blue-joy-con/6364255.p?skuId=6364255',
-    'https://www.bestbuy.com/site/nintendo-switch-32gb-console-gray-joy-con/6364253.p?skuId=6364253',
-    'https://www.bestbuy.com/site/nintendo-geek-squad-certified-refurbished-switch-neon-red-neon-blue-joy-con/6377113.p?skuId=6377113'
+    # 'https://www.bestbuy.com/site/nintendo-switch-32gb-console-gray-joy-con/6364253.p?skuId=6364253',
+    # 'https://www.bestbuy.com/site/nintendo-geek-squad-certified-refurbished-switch-neon-red-neon-blue-joy-con/6377113.p?skuId=6377113',
+    # 'https://www.bestbuy.com/site/hp-25x-24-5-led-fhd-monitor-gray-green/6280605.p?skuId=6280605',
+    'https://www.bestbuy.com/site/razer-kraken-x-wired-stereo-gaming-headset-for-pc-ps4-xbox-one-nintendo-switch-and-mobile-devices-black/6342891.p?skuId=6342891'
 ]
 
+running = true
 app.sproutProducts(seeds)
-puts app.none_available?
-while app.none_available?
-    puts app.check_products
-    puts "waiting"
-    Notifier.notify('test title', 'test price')
+
+while running
+
+    update = app.check_products
+    
+    if update
+        update.each {|p| alert.notify(p.title)}
+        puts "NOTIFIED"
+    end
+
     sleep(20)
     puts "checking again"
-    puts ""    
 end
-
-
-
-    # for each product
-        # update
-        # if update different
-            # add to cart
-            # change qty
-            # notify
-            # purchase
-            
-    # wait x minutes
-# end

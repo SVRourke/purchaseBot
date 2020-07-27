@@ -19,7 +19,7 @@ class BotController
                 p.availability = true
             end
         end
-        Product.all.collect {|p| p.availability == true}
+        Product.all.select {|p| p.availability == true}
     end
 
     def none_available?
