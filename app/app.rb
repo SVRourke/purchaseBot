@@ -1,7 +1,7 @@
 require_relative "./../environment.rb"
 
 app = BotController.new()
-
+alert = Notifier.new
 puts app.class
 
 seeds = [
@@ -15,6 +15,7 @@ puts app.none_available?
 while app.none_available?
     puts app.check_products
     puts "waiting"
+    Notifier.notify('test title', 'test price')
     sleep(20)
     puts "checking again"
     puts ""    
